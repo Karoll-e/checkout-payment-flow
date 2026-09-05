@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TransactionStatus {
+  PENDING
+  APPROVED
+  DECLINED
+  ERROR
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  price       Decimal  @db.Decimal(10, 2)
+  stock       Int
+  imageUrl    String?
+
+  transactions Transaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Customer {
+  id    String @id @default(cuid())
+  name  String
+  email String @unique
+  phone String
+
+  transactions Transaction[]
+
+  createdAt DateTime @default(now())
+}
+
+model Delivery {
+  id      String @id @default(cuid())
+  address String
+  city    String
+
+  transaction Transaction?
+
+  createdAt DateTime @default(now())
+}
+
+model Transaction {
+  id     String             @id @default(cuid())
+  status TransactionStatus  @default(PENDING)
+
+  productAmount Decimal @db.Decimal(10, 2)
+  baseFee       Decimal @db.Decimal(10, 2)
+  deliveryFee   Decimal @db.Decimal(10, 2)
+
+  wompiTransactionId String?
+  errorMessage       String?
+
+  productId  String
+  product    Product  @relation(fields: [productId], references: [id])
+
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+
+  deliveryId String   @unique
+  delivery   Delivery @relation(fields: [deliveryId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
