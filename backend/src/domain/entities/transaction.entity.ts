@@ -15,6 +15,7 @@ export class Transaction {
   constructor(
     public readonly id: string,
     public readonly productId: string,
+    public readonly quantity: number,
     public readonly customerId: string,
     public readonly deliveryId: string,
     public readonly productAmount: number,
@@ -24,6 +25,9 @@ export class Transaction {
     createdAt?: Date,
     updatedAt?: Date,
   ) {
+    if (quantity <= 0) {
+      throw new Error('Quantity must be positive');
+    }
     if (productAmount < 0 || baseFee < 0 || deliveryFee < 0) {
       throw new Error('Amounts cannot be negative');
     }

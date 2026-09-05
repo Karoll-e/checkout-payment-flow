@@ -1,10 +1,10 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 enum TransactionStatus {
@@ -50,8 +50,9 @@ model Delivery {
 }
 
 model Transaction {
-  id     String             @id @default(cuid())
-  status TransactionStatus  @default(PENDING)
+  id       String            @id @default(cuid())
+  status   TransactionStatus @default(PENDING)
+  quantity Int               @default(1)
 
   productAmount Decimal @db.Decimal(10, 2)
   baseFee       Decimal @db.Decimal(10, 2)
