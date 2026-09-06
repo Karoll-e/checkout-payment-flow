@@ -143,4 +143,24 @@ describe('ConfirmPaymentUseCase', () => {
       expect(result.error).toBe('CUSTOMER_NOT_FOUND');
     }
   });
+
+  it('marca error con mensaje por defecto si el gateway no da mensaje', async () => {
+  const tx = buildPendingTransaction();
+  transactionRepo.findById.mockResolvedValue(tx);
+  customerRepo.findById.mockResolvedValue(
+    new Customer('customer-1', 'Karoll', 'karoll@test.com', '+573001234567'),
+  );
+  paymentGateway.charge.mockResolvedValue({
+    externalId: '',
+    status: 'ERROR',
+    // sin "message"
+  });
+
+  const result = await useCase.execute({ transactionId: 'tx-1', cardToken: 'tok_test' });
+
+  expect(result.ok).toBe(true);
+  if (result.ok) {
+    expect(result.value.errorMessage).toBe('Unknown payment error');
+  }
+});
 });

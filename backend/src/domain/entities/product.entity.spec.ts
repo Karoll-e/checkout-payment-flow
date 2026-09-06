@@ -44,4 +44,9 @@ describe('Product', () => {
     const product = new Product('1', 'Mouse', 'desc', 50000, 2);
     expect(product.hasStock(5)).toBe(false);
   });
+
+  it('hasStock devuelve true cuando el stock es exactamente igual a la cantidad pedida', () => {
+  const product = new Product('1', 'Mouse', 'desc', 50000, 5);
+  expect(product.hasStock(5)).toBe(true);
+  });
 });
