@@ -24,6 +24,8 @@ export class Transaction {
     status: TransactionStatus = TransactionStatus.PENDING,
     createdAt?: Date,
     updatedAt?: Date,
+    wompiTransactionId?: string,   
+    errorMessage?: string,
   ) {
     if (quantity <= 0) {
       throw new Error('Quantity must be positive');
@@ -34,6 +36,8 @@ export class Transaction {
     this._status = status;
     this.createdAt = createdAt ?? new Date();
     this.updatedAt = updatedAt ?? new Date();
+    this._wompiTransactionId = wompiTransactionId;
+    this._errorMessage = errorMessage;
   }
 
   get status(): TransactionStatus {
