@@ -103,15 +103,37 @@
 
 .product-card__buy-button {
   margin-top: 0.5rem;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 6px;
-  background: #2d6cdf;
-  color: #fff;
-  font-size: 1rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #dbe1e8;
+  border-radius: 10px;
+  background: #fff;
+  color: #1f2937;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: left;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.product-card__buy-button:hover {
+  border-color: #2d6cdf;
+  box-shadow: 0 0 0 2px rgba(45, 108, 223, 0.12);
 }
 
 .product-card__buy-button:active {
   opacity: 0.85;
+}
+
+.product-card__buy-logos {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.product-card__buy-label {
+  line-height: 1.2;
 }

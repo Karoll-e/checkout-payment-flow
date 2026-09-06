@@ -18,7 +18,7 @@ export default function ProductPage() {
     productsApi
       .getAll()
       .then(setProducts)
-      .catch(() => setError('No se pudieron cargar los productos. Intenta de nuevo.'))
+      .catch(() => setError('Could not load products. Please try again.'))
       .finally(() => setLoading(false));
   }, []);
 
@@ -32,12 +32,12 @@ export default function ProductPage() {
     navigate('/checkout');
   };
 
-  if (loading) return <p className="product-page__status">Cargando productos...</p>;
+  if (loading) return <p className="product-page__status">Loading products...</p>;
   if (error) return <p className="product-page__status product-page__status--error">{error}</p>;
 
   return (
     <div className="product-page">
-      <h1 className="product-page__title">Nuestros productos</h1>
+      <h1 className="product-page__title">Our products</h1>
       <div className="product-page__grid">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} onBuy={handleBuy} />

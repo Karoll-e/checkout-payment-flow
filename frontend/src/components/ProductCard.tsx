@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { ProductDto } from '../services/api';
+import { VisaLogo, MastercardLogo } from './CardLogos';
 
 interface ProductCardProps {
   product: ProductDto;
@@ -22,20 +23,20 @@ export default function ProductCard({ product, onBuy }: ProductCardProps) {
         <h3 className="product-card__name">{product.name}</h3>
         <p className="product-card__description">{product.description}</p>
         <p className="product-card__price">
-          {product.price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}
+          {product.price.toLocaleString('en-US', { style: 'currency', currency: 'COP' })}
         </p>
         <p className="product-card__stock">
-          {outOfStock ? 'Agotado' : `${product.stock} unidades disponibles`}
+          {outOfStock ? 'Out of stock' : `${product.stock} units available`}
         </p>
 
         {!outOfStock && (
           <>
             <div className="product-card__quantity">
-              <button type="button" onClick={decrease} aria-label="Disminuir cantidad">
+              <button type="button" onClick={decrease} aria-label="Decrease quantity">
                 −
               </button>
               <span>{quantity}</span>
-              <button type="button" onClick={increase} aria-label="Aumentar cantidad">
+              <button type="button" onClick={increase} aria-label="Increase quantity">
                 +
               </button>
             </div>
@@ -45,7 +46,11 @@ export default function ProductCard({ product, onBuy }: ProductCardProps) {
               className="product-card__buy-button"
               onClick={() => onBuy(product, quantity)}
             >
-              Pagar con tarjeta
+              <span className="product-card__buy-logos">
+                <VisaLogo />
+                <MastercardLogo />
+              </span>
+              <span className="product-card__buy-label">Pay with credit card</span>
             </button>
           </>
         )}
