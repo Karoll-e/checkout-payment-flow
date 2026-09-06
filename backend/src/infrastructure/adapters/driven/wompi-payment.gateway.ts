@@ -103,9 +103,13 @@ export class WompiPaymentGateway implements PaymentGatewayPort {
   }
 
   private async getAcceptanceToken(): Promise<string> {
-    const response = await fetch(`${this.baseUrl}/merchants/${this.publicKey}`);
-    const data = await response.json();
-    return data.data.presigned_acceptance.acceptance_token;
+  const response = await fetch(`${this.baseUrl}/merchants/info`, {
+    headers: {
+      'x-merchant-public-key': this.publicKey,
+    },
+  });
+  const data = await response.json();
+  return data.data.presigned_acceptance.acceptance_token;
   }
 
   private buildIntegritySignature(
