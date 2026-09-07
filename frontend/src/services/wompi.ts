@@ -17,18 +17,18 @@ export async function tokenizeCard(input: TokenizeCardInput): Promise<string> {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      number: input.number,
+      number: input.number.replace(/\s/g, ''),
       cvc: input.cvc,
-      exp_month: input.expMonth,
-      exp_year: input.expYear,
-      card_holder: input.cardHolder,
+      exp_month: input.expMonth.padStart(2, '0'),
+      exp_year: input.expYear.padStart(2, '0'),
+      card_holder: input.cardHolder.toUpperCase(),
     }),
   });
 
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data?.error?.reason ?? 'No se pudo validar la tarjeta');
+    throw new Error(data?.error?.reason ?? 'Could not validate card');
   }
 
   return data.data.id;

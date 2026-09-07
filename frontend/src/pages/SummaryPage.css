@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+
+/* Mobile-first: full-screen page with dark theme matching ProductPage */
+.summary-page {
+  position: relative;
+  background: #14140f;
+  color: #f5f0e6;
+  min-height: 100vh;
+  padding: 2rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  /* Break out of the app shell (#root has a fixed max-width + side borders) */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.summary-page__content {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.summary-page__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 2.2rem;
+  line-height: 1.1;
+  margin: 0.5rem 0 1rem;
+  color: #f5f0e6;
+}
+
+.summary-page__details {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.summary-page__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.summary-page__row:last-of-type {
+  border-bottom: none;
+}
+
+.summary-page__row--total {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: none;
+  margin-top: 0.25rem;
+  padding-top: 0.75rem;
+}
+
+.summary-page__label {
+  font-size: 0.95rem;
+  color: #cfc9ba;
+}
+
+.summary-page__value {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #f5f0e6;
+}
+
+.summary-page__row--total .summary-page__label,
+.summary-page__row--total .summary-page__value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f5f0e6;
+}
+
+.summary-page__error {
+  color: #e08a6a;
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0.5rem;
+  text-align: center;
+}
+
+.summary-page__pay-button {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 1rem;
+  padding: 0.95rem;
+  border: none;
+  border-radius: 999px;
+  background: #f2e9d8;
+  color: #14140f;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.summary-page__pay-button:hover:not(:disabled) {
+  background: #ffffff;
+}
+
+.summary-page__pay-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.summary-page__footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: #cfc9ba;
+}
+
+.summary-page__globe {
+  font-size: 0.85rem;
+}
+
+/* Desktop: centered content, larger typography */
+@media (min-width: 640px) {
+  .summary-page {
+    padding: 3rem 4.5rem;
+  }
+
+  .summary-page__title {
+    font-size: 3rem;
+  }
+
+  .summary-page__details {
+    padding: 1.5rem;
+  }
+
+  .summary-page__label,
+  .summary-page__value {
+    font-size: 1rem;
+  }
+
+  .summary-page__row--total .summary-page__label,
+  .summary-page__row--total .summary-page__value {
+    font-size: 1.3rem;
+  }
+
+  .summary-page__footer {
+    position: absolute;
+    top: 3rem;
+    right: 4.5rem;
+    width: auto;
+    border-top: none;
+    padding-top: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .summary-page__globe {
+    font-size: 1.6rem;
+  }
+}
