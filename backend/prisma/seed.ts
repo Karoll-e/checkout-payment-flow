@@ -8,11 +8,11 @@ const prisma = new PrismaClient({
 async function main() {
   const products = [
     {
-      name: 'Auriculares inalámbricos',
-      description: 'Auriculares bluetooth con cancelación de ruido',
+      name: 'Game Boy',
+      description: 'The legendary handheld console that started it all.',
       price: 149900,
-      stock: 15,
-      imageUrl: 'https://via.placeholder.com/300?text=Auriculares',
+      stock: 12,
+      imageUrl: '/nintendo-image.png',
     },
   ];
 
