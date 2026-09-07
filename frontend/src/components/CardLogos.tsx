@@ -42,3 +42,29 @@ export function MastercardLogo() {
     </svg>
   );
 }
+
+export function AmexLogo() {
+  return (
+    <svg
+      width="30"
+      height="19"
+      viewBox="0 0 48 30"
+      role="img"
+      aria-label="American Express"
+      className="card-logo"
+    >
+      <rect width="48" height="30" rx="4" fill="#1F72CD" />
+      <text
+        x="24"
+        y="18"
+        textAnchor="middle"
+        fontFamily="Arial, Helvetica, sans-serif"
+        fontWeight="700"
+        fontSize="9"
+        fill="#fff"
+      >
+        AMEX
+      </text>
+    </svg>
+  );
+}
