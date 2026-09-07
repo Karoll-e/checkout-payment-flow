@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+
+/* Mobile-first: single column, stacked layout (reference: mobile mock) */
+.product-hero {
+  position: relative;
+  background: #14140f;
+  color: #f5f0e6;
+  min-height: 100vh;
+  padding: 2rem 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  
+  box-sizing: border-box;
+  /* Break out of the app shell (#root has a fixed max-width + side borders)
+     so the hero can go fully edge-to-edge. */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.product-hero__image {
+  display: block;
+  max-width: 220px;
+  width: 70%;
+}
+
+.product-hero__image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.product-hero__image--mobile {
+  order: -1;
+  margin: 0.5rem 0 1rem;
+}
+
+.product-hero__image--desktop {
+  display: none;
+}
+
+.product-hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 0.14rem;
+}
+
+.product-hero__eyebrow {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.3rem;
+  margin: 0;
+  color: #f5f0e6;
+}
+
+.product-hero__brand {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1;
+  margin: 0 0 1rem;
+  color: #f5f0e6;
+}
+
+.product-hero__name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin: 0;
+  color: #f5f0e6;
+}
+
+.product-hero__tagline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  margin: 0.1rem 0 0.75rem;
+  color: #e7e2d6;
+}
+
+.product-hero__price {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.9rem;
+  color: #f5f0e6;
+}
+
+.product-hero__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+  width: 100%;
+}
+
+.product-hero__buy-button {
+  padding: 0.7rem 1.1rem;
+  border: none;
+  border-radius: 999px;
+  background: #f2e9d8;
+  color: #14140f;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.product-hero__buy-button:hover {
+  background: #ffffff;
+}
+
+.product-hero__buy-button:active {
+  transform: scale(0.98);
+}
+
+.product-hero__buy-logos {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.product-hero__buy-label {
+  white-space: nowrap;
+}
+
+.product-hero__quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  padding: 0.35rem 0.6rem;
+}
+
+.product-hero__quantity button {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: #f5f0e6;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.product-hero__quantity span {
+  min-width: 1ch;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.product-hero__stock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #cfc9ba;
+  margin: 0 0 1.25rem;
+}
+
+.product-hero__stock-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4caf50;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.product-hero__stock-dot--empty {
+  background: #b0522f;
+}
+
+.product-hero__footer {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding-top: 0.6rem;
+  margin: 0.5rem 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: #cfc9ba;
+  width: 100%;
+}
+
+.product-hero__globe {
+  font-size: 0.85rem;
+}
+
+/* Desktop: two-column layout matching the reference design */
+@media (min-width: 768px) {
+  .product-hero {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    text-align: left;
+    min-height: 100vh;
+    padding: 3rem 4.5rem;
+  }
+
+  .product-hero__image--mobile {
+    display: none;
+  }
+
+  .product-hero__image--desktop {
+    display: block;
+    width: 34%;
+    max-width: 480px;
+    order: 2;
+  }
+
+  .product-hero__content {
+    align-items: flex-start;
+    max-width: 460px;
+    order: 1;
+  }
+
+  .product-hero__eyebrow {
+    font-size: 1.6rem;
+  }
+
+  .product-hero__brand {
+    font-size: 5.5rem;
+  }
+
+  .product-hero__name {
+    font-size: 2.6rem;
+  }
+
+  .product-hero__tagline {
+    font-size: 1.3rem;
+  }
+
+  .product-hero__price {
+    font-size: 1.4rem;
+  }
+
+  .product-hero__actions {
+    justify-content: flex-start;
+  }
+
+  .product-hero__stock {
+    justify-content: flex-start;
+  }
+
+  .product-hero__footer {
+    position: absolute;
+    top: 3rem;
+    right: 4.5rem;
+    width: auto;
+    border-top: none;
+    padding-top: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .product-hero__globe {
+    font-size: 1.6rem;
+  }
+}

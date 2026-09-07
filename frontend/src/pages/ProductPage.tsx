@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { productsApi, type ProductDto } from '../services/api';
 import { useAppDispatch } from '../app/hooks';
-import { selectProduct } from '../features/checkout/checkoutSlice';
-import ProductCard from '../components/ProductCard';
+import { selectProduct, setCustomerAndDelivery } from '../features/checkout/checkoutSlice';
+import ProductHero from '../components/ProductHero';
+import PaymentModal from '../components/PaymentModal';
 import './ProductPage.css';
 
 export default function ProductPage() {
-  const [products, setProducts] = useState<ProductDto[]>([]);
+  const [product, setProduct] = useState<ProductDto | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [checkoutQuantity, setCheckoutQuantity] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -17,32 +20,58 @@ export default function ProductPage() {
   useEffect(() => {
     productsApi
       .getAll()
-      .then(setProducts)
-      .catch(() => setError('Could not load products. Please try again.'))
+      .then((products) => setProduct(products[0] ?? null))
+      .catch(() => setError('Could not load the product. Please try again.'))
       .finally(() => setLoading(false));
   }, []);
 
-  const handleBuy = (product: ProductDto, quantity: number) => {
+  const handleBuy = (_product: ProductDto, quantity: number) => {
+    setCheckoutQuantity(quantity);
+    setIsModalOpen(true);
+  };
+
+  const handleConfirm = (payload: {
+    customer: { name: string; email: string; phone: string };
+    delivery: { address: string; city: string };
+    cardToken: string;
+  }) => {
+    if (!product) return;
+
     dispatch(
       selectProduct({
         product: { id: product.id, name: product.name, price: product.price },
-        quantity,
+        quantity: checkoutQuantity,
       }),
     );
-    navigate('/checkout');
+    dispatch(
+      setCustomerAndDelivery({
+        customer: payload.customer,
+        delivery: payload.delivery,
+      }),
+    );
+
+    setIsModalOpen(false);
+    navigate('/summary', { state: { cardToken: payload.cardToken } });
   };
 
-  if (loading) return <p className="product-page__status">Loading products...</p>;
+  if (loading) return <p className="product-page__status">Loading product...</p>;
   if (error) return <p className="product-page__status product-page__status--error">{error}</p>;
+  if (!product)
+    return <p className="product-page__status">There is no product available right now.</p>;
 
   return (
-    <div className="product-page">
-      <h1 className="product-page__title">Our products</h1>
-      <div className="product-page__grid">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} onBuy={handleBuy} />
-        ))}
-      </div>
-    </div>
+    <>
+      <ProductHero product={product} onBuy={handleBuy} />
+      {isModalOpen && (
+        <PaymentModal
+          isOpen={isModalOpen}
+          product={product}
+          quantity={checkoutQuantity}
+          onClose={() => setIsModalOpen(false)}
+          onConfirm={handleConfirm}
+        />
+      )}
+    </>
   );
 }
+
