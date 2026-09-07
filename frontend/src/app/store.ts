@@ -27,9 +27,7 @@ store.subscribe(() => {
       PERSIST_KEY,
       JSON.stringify(store.getState().checkout),
     );
-  } catch {
-    // localStorage lleno o no disponible; no rompemos la app por esto
-  }
+  } catch {  }
 });
 
 export type RootState = ReturnType<typeof store.getState>;
