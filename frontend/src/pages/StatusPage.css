@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+
+/* Mobile-first: full-screen page with dark theme matching ProductPage */
+.status-page {
+  position: relative;
+  background: #14140f;
+  color: #f5f0e6;
+  min-height: 100vh;
+  padding: 2rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.status-page__content {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.status-page__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.status-page__icon--success {
+  background: rgba(76, 175, 80, 0.15);
+  color: #4caf50;
+  border: 2px solid #4caf50;
+}
+
+.status-page__icon--failure {
+  background: rgba(224, 138, 106, 0.15);
+  color: #e08a6a;
+  border: 2px solid #e08a6a;
+}
+
+.status-page__icon--pending {
+  background: rgba(242, 233, 216, 0.15);
+  color: #f2e9d8;
+  border: 2px solid #f2e9d8;
+}
+
+.status-page__spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(242, 233, 216, 0.3);
+  border-top-color: #f2e9d8;
+  border-radius: 50%;
+  animation: status-spin 0.8s linear infinite;
+}
+
+@keyframes status-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.status-page__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0;
+  color: #f5f0e6;
+}
+
+.status-page__subtitle {
+  font-size: 0.95rem;
+  color: #cfc9ba;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.status-page__details {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.status-page__detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.status-page__detail-row:last-of-type {
+  border-bottom: none;
+}
+
+.status-page__detail-label {
+  font-size: 0.9rem;
+  color: #cfc9ba;
+}
+
+.status-page__detail-value {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #f5f0e6;
+}
+
+.status-page__detail-value--mono {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.8rem;
+}
+
+.status-page__badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.status-page__badge--approved {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  border: 1px solid #4caf50;
+}
+
+.status-page__badge--declined,
+.status-page__badge--error {
+  background: rgba(224, 138, 106, 0.2);
+  color: #e08a6a;
+  border: 1px solid #e08a6a;
+}
+
+.status-page__badge--pending {
+  background: rgba(242, 233, 216, 0.2);
+  color: #f2e9d8;
+  border: 1px solid #f2e9d8;
+}
+
+.status-page__section {
+  width: 100%;
+  text-align: left;
+}
+
+.status-page__section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: #f5f0e6;
+}
+
+.status-page__address {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #f5f0e6;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.status-page__actions {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.status-page__button {
+  width: 100%;
+  max-width: 420px;
+  padding: 0.95rem;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.status-page__button--primary {
+  background: #f2e9d8;
+  color: #14140f;
+}
+
+.status-page__button--primary:hover {
+  background: #ffffff;
+}
+
+.status-page__footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  color: #cfc9ba;
+}
+
+.status-page__globe {
+  font-size: 0.85rem;
+}
+
+/* Desktop: centered content, larger typography */
+@media (min-width: 640px) {
+  .status-page {
+    padding: 3rem 4.5rem;
+  }
+
+  .status-page__title {
+    font-size: 2.5rem;
+  }
+
+  .status-page__icon {
+    width: 100px;
+    height: 100px;
+    font-size: 3rem;
+  }
+
+  .status-page__subtitle {
+    font-size: 1rem;
+  }
+
+  .status-page__details {
+    padding: 1.5rem;
+  }
+
+  .status-page__detail-label,
+  .status-page__detail-value {
+    font-size: 1rem;
+  }
+
+  .status-page__footer {
+    position: absolute;
+    top: 3rem;
+    right: 4.5rem;
+    width: auto;
+    border-top: none;
+    padding-top: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .status-page__globe {
+    font-size: 1.6rem;
+  }
+}

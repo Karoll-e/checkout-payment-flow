@@ -26,6 +26,7 @@ export async function tokenizeCard(input: TokenizeCardInput): Promise<string> {
   });
 
   const data = await response.json();
+  
 
   if (!response.ok) {
     throw new Error(data?.error?.reason ?? 'Could not validate card');
